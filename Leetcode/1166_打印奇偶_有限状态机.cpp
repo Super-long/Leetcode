@@ -14,29 +14,21 @@ public:
 
     // printNumber(x) outputs "x", where x is an integer.
     void zero(function<void(int)> printNumber) {
-        for(int i = 1; i <= n/2; ++i){
-            cout << "i : " << i << endl;
-            while(ze){
-                std::unique_lock<std::mutex> lk(mt);
-                //cout << "zero \n";
-                g_cv.wait(lk, [=](){return ze;});
-            }
-            cout << i << " zero ";
-            printNumber(0); cout << endl;
-            ze = true;
+        for(int i = 1; i <= n; ++i){
+            std::unique_lock<std::mutex> lk(mt);
+            g_cv.wait(lk, [=](){return !ze && other;});
+            printNumber(0);
+            if(i&1)ze = true;
+            else other = false;
             g_cv.notify_all();
         }
     }
 
     void even(function<void(int)> printNumber) {
         for(int i = 2; i <= n; i+=2){
-            while(!(ze && !other)){
-                std::unique_lock<std::mutex> lk(mt);
-                cout << "even\n";
-                g_cv.wait(lk,[=](){return !(ze && !other);});
-            }
-            cout << i << " even ";
-            printNumber(i); cout << endl;
+            std::unique_lock<std::mutex> lk(mt);
+            g_cv.wait(lk,[=](){return !ze && !other;});
+            printNumber(i);
             ze = false;
             other = true;
             g_cv.notify_all();
@@ -44,15 +36,11 @@ public:
     }
 
     void odd(function<void(int)> printNumber) {
-        for(int i = 1; i < n; i+=2){
-            while(!(ze && other)){
-                std::unique_lock<std::mutex> lk(mt);
-                cout <<" odd\n";
-                g_cv.wait(lk, [=](){return !(ze && other);});
-            }
-            cout <<i<< " odd ";
-            printNumber(i); cout << endl;
-            other = false;
+        for(int i = 1; i <= n; i+=2){
+            std::unique_lock<std::mutex> lk(mt);
+            g_cv.wait(lk, [=](){return ze && other;});
+            printNumber(i);
+            ze = false;
             g_cv.notify_all();
         }
     }
@@ -60,7 +48,7 @@ public:
 
 //有问题 输出不规则 条件变量理解出现错误 逻辑大概对
 int main(){
-    ZeroEvenOdd temp(10);
+    ZeroEvenOdd temp(5);
     std::thread Zero(&ZeroEvenOdd::zero, &temp,[](int para){cout << para;});
     Zero.detach();
     std::thread Lockodd(&ZeroEvenOdd::odd, &temp,[](int para){cout << para;});
