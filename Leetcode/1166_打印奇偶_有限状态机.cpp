@@ -46,7 +46,6 @@ public:
     }
 };
 
-//有问题 输出不规则 条件变量理解出现错误 逻辑大概对
 int main(){
     ZeroEvenOdd temp(5);
     std::thread Zero(&ZeroEvenOdd::zero, &temp,[](int para){cout << para;});
@@ -58,4 +57,3 @@ int main(){
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     return 0;
 }
-//这样写错误的原因是因为不确定在发出条件变量后even odd两个线程谁先竞争到锁
