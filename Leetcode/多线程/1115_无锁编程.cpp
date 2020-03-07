@@ -13,7 +13,8 @@ public:
     void foo(function<void()> printFoo) {
         
         for (int i = 0; i < n; i++) {
-            while(!flag.load(std::memory_order_acquire));
+            while(!flag.load(std::memory_order_acquire))
+                std::this_thread::yield(); //这很重要
         	// printFoo() outputs "foo". Do not change or remove this line.
         	printFoo();
             flag.store(false, std::memory_order_release);
@@ -23,7 +24,8 @@ public:
     void bar(function<void()> printBar) {
         
         for (int i = 0; i < n; i++) {
-            while(flag.load(std::memory_order_acquire));
+            while(flag.load(std::memory_order_acquire))
+                std::this_thread::yield();
         	// printBar() outputs "bar". Do not change or remove this line.
         	printBar();
             flag.store(true, std::memory_order_release);
@@ -47,5 +49,4 @@ int main(){
     std::thread two(&FooBar::bar, &T, printtwo);
     one.join();
     two.join();
-    return 0;
 }
