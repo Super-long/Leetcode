@@ -39,9 +39,9 @@ public:
         d[len] = nums[0];
 
         for(size_t i = 1; i < nums.size(); i++){
-            if(nums[i] > d[len]) d[++len] = nums[i];
+            if(nums[i] > d[len]) d[++len] = nums[i]; //这里的d数组总是单调的
             int* spot = std::lower_bound(d, d+len, nums[i]);
-            *spot = nums[i]; //lower_bound才能过 
+            *spot = nums[i]; //lower_bound才能过 见下样例
         }
         return len;
     }
