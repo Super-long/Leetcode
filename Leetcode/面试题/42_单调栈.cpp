@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution { // 单调栈
 public:
     int trap(vector<int>& height) {
         stack<int> sta;
