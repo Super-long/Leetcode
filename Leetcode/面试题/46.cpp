@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/* class Solution {
+class Solution {
 private:
     vector<vector<int>> res;
 public:
@@ -24,9 +24,9 @@ public:
         }
         return;
     }
-}; */
+};
 
-class Solution {
+/* class Solution { // 两种是有区别的 函数的方法是去重的 比如样例中的{1,1,1}
 private:
     vector<vector<int>> res;
 public:
@@ -43,11 +43,11 @@ public:
         }while(next_permutation(nums.begin(),nums.begin()+nums.size()));
         return res;
     }
-};
+}; */
 
 int main(){
     Solution sol;
-    vector<int> vec = {0,-1,1};
+    vector<int> vec = {1,1,1};
     auto x = sol.permute(vec);
     cout << "size : " << x.size() << endl;
     for(auto item : x){
