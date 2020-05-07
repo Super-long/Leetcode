@@ -25,7 +25,7 @@ public:
         if(mp[i]){
             dp[i] = min(min(dp[i+1] + cost[0], dp[i+7] + cost[1]),dp[i+30]+cost[2]);
         }else {
-            dp[i] = dfs(i+1);
+            dp[i] = dfs(i+1);  //这一步看不懂
         }
         return dp[i];
     }
