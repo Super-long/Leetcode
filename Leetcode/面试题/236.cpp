@@ -9,7 +9,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution {
+class Solution { //递归
 private:
     TreeNode* res;
     bool dfs(TreeNode* root, TreeNode* p, TreeNode* q){
