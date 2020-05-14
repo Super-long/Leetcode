@@ -22,7 +22,7 @@ public:
     int largestRectangleArea(vector<int>& heights) { // 单调栈
         int MaxArea = 0;
         vector<int> sta;
-        heights.insert(heights.begin(), 0);
+        heights.insert(heights.begin(), 0); //不加这个过不了OJ
         heights.push_back(0);
         for(int i = 0;i < heights.size(); ++i){
             while(!sta.empty() && heights[sta.back()] > heights[i]){
