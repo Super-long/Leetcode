@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 private:
-int init(string& a, int len)
+int init(string& a, int len) // 这种填充方式相比于string直接加比较快
 {
     int ans=1;
     for(int i=len;i>=0;i--)
