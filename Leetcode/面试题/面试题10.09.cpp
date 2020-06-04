@@ -24,7 +24,7 @@ public:
     }
 }; */
 
-class Solution {
+class Solution { // logn*logn
 public:
     //思路：某个元素左边都是比自己小的元素，元素下边都是比自己大的元素，
     //那么可以选择第一行最后一个元素作为比较的起始点。
