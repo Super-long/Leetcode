@@ -3,6 +3,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution {    
+public:
+    int maxProfit(vector<int>& prices) {
+        if(!prices.size()) return 0;
+        int dp[prices.size()][2];
+        memset(dp, 0, sizeof(dp));
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        for(size_t i = 1; i < prices.size(); i++){
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i]);
+            dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i]);
+        }
+        return dp[prices.size() - 1][0];        
+    }
+};
+
 /* class Solution {    // dp
 public:
     int maxProfit(vector<int>& prices) {
@@ -18,11 +34,11 @@ public:
         }
         return crash[prices.size() - 1];
     }
-}; */
+}; */ 
 
 // 波峰波谷
 // 这算是比较简单的写法，把一个递增的区间看做几个连续的小段
-class Solution {    
+/* class Solution {    
 public:
     int maxProfit(vector<int>& prices) {
         if(!prices.size()) return 0;
@@ -34,4 +50,4 @@ public:
         }
         return res;
     }
-};
+}; */
