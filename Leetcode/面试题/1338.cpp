@@ -32,3 +32,20 @@ int main(){
     cout << sol.minSetSize(vec) << endl;
     return 0;
 }
+
+/*
+Write Lock
+1 n = create(l + “/write-”, EPHEMERAL|SEQUENTIAL)
+2 C = getChildren(l, false)
+3 if n is lowest znode in C, exit
+4 p = znode in C ordered just before n
+5 if exists(p, true) wait for event
+6 goto 2
+Read Lock
+1 n = create(l + “/read-”, EPHEMERAL|SEQUENTIAL)
+2 C = getChildren(l, false)
+3 if no write znodes lower than n in C, exit
+4 p = write znode in C ordered just before n
+5 if exists(p, true) wait for event
+6 goto 3
+*/
