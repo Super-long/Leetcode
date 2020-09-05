@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution { // dfs
+/* class Solution { // dfs
     vector<vector<int>> edges;
     vector<int> state;
     bool vaild = true;
@@ -35,5 +35,39 @@ public:
             if(!vaild) return vaild;
         }
         return vaild;
+    }
+};
+ */
+
+class Solution {
+    vector<vector<int>> edges;
+    vector<int> agree;
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        edges.resize(numCourses);
+        agree.resize(numCourses);
+        for(auto& item : prerequisites){
+            edges[item[0]].push_back(item[1]);
+            agree[item[1]]++;
+        }
+        queue<int> que;
+        for(int i = 0; i < numCourses; ++i){
+            if(agree[i] == 0)
+                que.push(i);
+        }
+        int visited = 0;
+        while(que.size()){
+            ++visited;
+            int Top = que.front();
+            que.pop();
+            //cout << Top << endl;
+            for (int i = 0; i < edges[Top].size(); i++){
+                agree[edges[Top][i]]--;
+                if(agree[edges[Top][i]] == 0){
+                    que.push(edges[Top][i]);
+                }
+            }
+        }
+        return visited == numCourses;
     }
 };
