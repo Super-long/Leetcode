@@ -29,7 +29,7 @@ public:
 /* class Solution { // 两种是有区别的 函数的方法是去重的 比如样例中的{1,1,1}
 private:
     vector<vector<int>> res;
-public:
+public: 
     vector<vector<int>> permute(vector<int>& nums) {
         res.clear();
         sort(nums.begin(), nums.end());
