@@ -14,6 +14,7 @@ public: // 显然去重是难点
                 while(p1 < p2){
                     if(nums[p1] + nums[p2] < -nums[i]){
                         p1++;
+                        // 中间可能会出现重复 所以对 第一个进行特判
                     }else if(nums[p1] + nums[p2] == -nums[i]){
                         if(p1 == i+1){ // 特判第一个值
                             ret.push_back({nums[i], nums[p1], nums[p2]});
