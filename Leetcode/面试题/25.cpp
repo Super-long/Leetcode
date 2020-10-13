@@ -8,7 +8,7 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Solution {
+/* class Solution {
 private:
     pair<ListNode*, ListNode*> Reverse(ListNode* head, ListNode* tail){
         ListNode* prev;
@@ -41,6 +41,46 @@ public:
             prev->next = head;
             tail->next = next;
 
+            prev = tail;
+            head = tail->next;
+        }
+        return hair->next;
+    }
+};
+ */
+class Solution {
+private:
+    pair<ListNode*, ListNode*> reverse(ListNode* head, ListNode* tail){
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while(curr != tail){
+            auto nextTemp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextTemp;
+        }
+        curr->next = prev;
+        return make_pair(tail, head);   // 返回新链表的头尾，并与原链没有连接
+    }
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* hair = new ListNode(0);
+        hair->next = head;
+        ListNode* prev = hair;
+        while(head){
+            ListNode* tail = prev;
+            // [head,tail]为此次翻转的区间
+            for(int i = 0; i < k; i++){
+                tail = tail->next;
+                if(!tail){
+                    return hair->next;
+                }
+            }
+            ListNode* nextTemp = tail->next;
+            tie(head, tail) = reverse(head, tail);
+
+            prev->next = head;
+            tail->next = nextTemp;
             prev = tail;
             head = tail->next;
         }
