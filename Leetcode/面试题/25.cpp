@@ -48,7 +48,7 @@ public:
     }
 };
  */
-class Solution {
+/* class Solution {
 private:
     pair<ListNode*, ListNode*> reverse(ListNode* head, ListNode* tail){
         ListNode* prev = nullptr;
@@ -82,6 +82,48 @@ public:
             prev->next = head;
             tail->next = nextTemp;
             prev = tail;
+            head = tail->next;
+        }
+        return hair->next;
+    }
+}; */
+
+class Solution {
+private:
+    pair<ListNode*, ListNode*> reverseList(ListNode* head, ListNode* tail) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while (curr != tail) {
+            auto TempNext = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = TempNext;
+        }
+        curr->next = prev;
+        return make_pair(curr, head);
+    }
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* hair = new ListNode(0);
+        hair->next = head;
+        ListNode* prev = hair;
+        ListNode* res = head;
+        bool flag = false;
+        while(head != nullptr) {
+            auto tail = head;
+            for (size_t i = 0; i < k-1; i++){
+                if(tail->next == nullptr){
+                    flag = true;
+                    break;
+                }
+                tail = tail->next;
+            }
+            if(flag) break;
+
+            auto item = reverseList(head, tail);
+            cout << item.first->val << " " << item.second->val << endl;
+            prev->next = item.first;
+            prev = item.second;
             head = tail->next;
         }
         return hair->next;
