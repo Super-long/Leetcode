@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution {    // 经典题目，容易写崩
 public:
     unordered_map <char, int> ori, cnt;
 
