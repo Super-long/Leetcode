@@ -3,7 +3,7 @@ using namespace std;
 
 /* class Solution {
 public:
-    int numberOfSubarrays(vector<int>& nums, int k) {   // 
+    int numberOfSubarrays(vector<int>& nums, int k) {
         vector<int> vec(nums.size());
         if(vec[0] & 1) vec[0] = 1;
         for (size_t i = 1; i < nums.size(); i++){   // 包含此下标前面的偶数总数
@@ -39,9 +39,10 @@ public:
         return res;
     }
 }; */
+
 class Solution {
 public:
-    int numberOfSubarrays(vector<int>& nums, int k){
+    int numberOfSubarrays(vector<int>& nums, int k){    // 这题感觉完全没有必要拿双指针做，把每个奇数的下标择出来就可以了，就是这样做
         vector<int> odd;
         odd.push_back(-1);
 
@@ -57,7 +58,7 @@ public:
             if (odd.size() - i > k)
             {
                 int left = odd[i] - odd[i - 1];
-                int right = j - odd[odd.size() - 2];
+                int right = j - odd[odd.size() - 2];    // 这里j其实就是odd[odd.size() - 1]
                 ans += left * right;
                 i++;
             }
