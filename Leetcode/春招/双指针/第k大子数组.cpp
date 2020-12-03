@@ -50,12 +50,7 @@ public:
 }; */
 
 class Solution {
-public:
-    /**
-     * @param a: an array
-     * @param k: the kth
-     * @return: return the kth subarray
-     */
+public: // 这个题不简单，这样虽然过了，但是有问题
     long long thekthSubarray(vector<int> &a, long long k) 
     {
         int n = a.size();
@@ -80,18 +75,22 @@ public:
         return left;
     }
     
+    // 小于等于
     long long equalOrSmaller(long long target, vector<long long>&presum)
     {
         int i = 0, j = 0;
         long long count = 0;
         while (j<presum.size() && presum[j] <= target)
             j++;
+
         count = j;
+        if(presum[0] >= target) count++;
         
         // 前缀和计算的是(i, j]区间的值
         for (int i=0; i<presum.size(); i++)
-        {
-            while (j<presum.size() && (presum[j]-presum[i])<=target)
+        {   // 写的有问题
+            // 这个循环每次跳出来rhs是要大一格的
+            while (j<presum.size() && (presum[j] - presum[i]) <= target)
                 j++;
             count+=(j-i-1);
             cout << count << endl;
@@ -104,7 +103,7 @@ public:
 
 int main(){
     Solution sol;
-    vector<int> vec = {100,3,1,4};
+    vector<int> vec = {100,100,100, 100};
     cout << sol.thekthSubarray(vec, 6) << endl;
     return 0;
 }
