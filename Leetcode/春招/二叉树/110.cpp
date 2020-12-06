@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TreeNode {
+struct TreeNode {   //  判断二叉树是否高度平衡
     int val;
     TreeNode *left;
     TreeNode *right;
