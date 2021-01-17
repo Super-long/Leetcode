@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std; 
 
 class Solution {        // 经典题目；求一个数字的两个区间；
 private:

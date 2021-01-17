@@ -1,6 +1,6 @@
 // 统计「优美子数组」
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std; 
 
 class Solution {
 public:
