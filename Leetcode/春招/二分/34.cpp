@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std; 
 
+// https://blog.csdn.net/qq_19332527/article/details/99881418?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161123902516780271564210%252522%25252C%252522scm%252522%25253A%25252220140713.130102334.pc%25255Fall.%252522%25257D&request_id=161123902516780271564210&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-3-99881418.first_rank_v2_pc_rank_v29&utm_term=%E4%BA%8C%E5%88%86%E4%B8%AD%E5%A4%A7%E4%BA%8E%E5%92%8C%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E
+
 class Solution {        // 经典题目；求一个数字的两个区间；
 private:
     // true的时候求左边

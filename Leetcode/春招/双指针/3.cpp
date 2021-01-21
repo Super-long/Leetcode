@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution_temp {
 public:
     int lengthOfLongestSubstring(string s) {
         int lhs = 0;
@@ -16,6 +16,27 @@ public:
             } else { // 新插入的字符不在答案中
                 mp.erase(s[lhs++]);
 
+            }
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_set<int> vis;
+        int lhs = 0;
+        int rhs = 0;
+        int res = 0;
+        while(rhs < s.size()){
+            if(vis.find(s[rhs]) == vis.end()){
+                vis.insert(s[rhs]);
+                res = max(res, rhs - lhs + 1);
+                rhs++;
+            } else {
+                vis.erase(s[lhs]);
+                lhs++;
             }
         }
         return res;
