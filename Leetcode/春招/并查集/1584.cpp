@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 最小生成树
 class Solution {
 private:
     struct edge{
