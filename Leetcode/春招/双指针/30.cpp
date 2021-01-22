@@ -24,7 +24,7 @@ public:
                     if(mapVaild[temp] == mapCount[temp]){
                         vaild++;
                     }
-                } else {
+                } else {    //这么写有问题，会丢失正确答案
                     bool flag = mapVaild[temp] >= mapCount[temp];
                     resStart = i + itemSize;
                     mapVaild.clear();
@@ -56,9 +56,9 @@ public:
         }
         return res;
     }
-};
- */
-class Solution {
+}; */
+
+/* class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
         vector<int> res;
@@ -91,12 +91,65 @@ public:
         }
         return res;
     }
+}; */
+
+// 分段的抽象建立好以后，其实就是一道裸的双指针，注意其中resultCount和count的用法，在resultCount小于wordCount时count才加，而resultCount一直加
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        vector<int> res;
+        if(words.empty()) return res;
+
+        unordered_map<string, int> wordCount;
+        for(auto& x : words){
+            wordCount[x]++;
+        }
+        int W = words[0].size();
+        int S = s.size();
+
+        int index = 0;
+        while(index < W){
+            int count = 0;
+            unordered_map<string, int> resultCount;
+
+            for(int i = index; i + W <= S; i += W){
+                if(i - index >= W*words.size()){
+                    auto temp = s.substr(i-W*words.size(), W);
+                    cout << "-- : " <<temp << endl;
+                    if(wordCount.find(temp) != wordCount.end()){
+                        if(resultCount[temp] <= wordCount[temp]){
+                            count--;
+                        }
+                        resultCount[temp]--;
+                    }
+                }
+
+                auto str = s.substr(i, W);
+                cout << str << " " << count <<  endl;
+                if(wordCount.find(str) != wordCount.end()){
+                    if(resultCount[str] < wordCount[str]){
+                        count++;
+                    }
+                    resultCount[str]++;
+                }
+
+                if(count == words.size()){
+                    cout << i << endl;
+                    res.push_back(i - W*(words.size() - 1));
+                }
+            }
+            index++;
+        }
+        return res;
+    }
 };
 
+// [6,9,12]
 int main(){
     Solution sol;
-    vector<string> vec = {"bar","foo"};
-    auto temp = sol.findSubstring("barfoothefoobarman", vec);
+    vector<string> vec = {"bar","foo","the"};
+    auto temp = sol.findSubstring("barfoofoobarthefoobarman", vec);
+    cout << "--------------------\n";
     for(auto x : temp){
         cout << x << endl;
     }

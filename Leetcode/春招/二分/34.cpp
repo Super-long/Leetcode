@@ -29,7 +29,7 @@ public:
         int rhs = binarySearch(nums, target, false) - 1;    // 得到的总是target的下一位
 
         // 前两个条件去除掉超出界限的情况；最后一个条件去除范围内没找到的情况；
-        if(lhs == nums.size() || (lhs == 0 && nums[0] != target) || (nums[lhs] != target && nums[rhs] != target)){ 
+        if(lhs == nums.size() || (lhs == 0 && nums[0] != target) || (nums[lhs] != target && nums[rhs] != target)){
             return {-1, -1};
         }
         return {lhs, rhs};
