@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std; 
 
+// 这题不太好写，边界条件比较难处理，万幸独自一人写出来了
 class Solution {
 private:
     // 查找这两个数组内第k小的值
