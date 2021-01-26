@@ -107,3 +107,45 @@ public:
         return node != nullptr;
     }
 };
+
+class Solution {    // 二分
+public:
+    int countNodes(TreeNode* root) {
+        if(!root) return false;
+        int level = 0;
+        auto temp = root;
+        while(temp){
+            ++level;
+            temp = temp->left;
+        }
+        if(level == 1) return 1;
+        cout << level << endl; 
+        int lhs = 1 << (level - 1);
+        int rhs = (1 << level) - 1;
+        int ans = rhs+1;
+        while(lhs <= rhs){
+            int mid = lhs + (rhs - lhs) / 2;
+            bool vis = check(mid, root, level);
+            if(!vis){
+                rhs = mid - 1;
+                ans = mid;
+            } else {
+                lhs = mid + 1;
+            }
+        }
+        return ans - 1;
+    }
+private:
+    bool check(int flag, TreeNode* root, int level){
+        int bits = 1 << (level - 2);
+        while(bits >= 1){
+            if(bits & flag){
+                root = root->right;
+            } else {
+                root = root->left;
+            }
+            bits >>= 1;
+        }
+        return root != nullptr;
+    }
+};

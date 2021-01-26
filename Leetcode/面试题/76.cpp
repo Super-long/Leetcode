@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution { // 写的奇慢无比
+/* class Solution { // 写的奇慢无比
 private:
     unordered_map<char, int> res,mp;
 public:
@@ -55,10 +55,55 @@ public:
         if(!flag) return "";
         return s.substr(res_lhs, res_rhs-res_lhs+1);
     }
+}; */
+
+class Solution {    // 做双指针就一招，想清楚什么i时候左边窗口移动就好
+private:
+    unordered_map<char, int> vis;
+    bool check(unordered_map<char, int>& mp){
+        for(const auto& x :vis){
+            if(x.second > mp[x.first]) return false;
+        }
+        return true;
+    }
+public:
+    string minWindow(string s, string t) {
+        for(auto x : t){
+            vis[x]++;
+        }
+
+        unordered_map<char, int> mp;
+        int lhs = 0;    // 在s上滑动
+        int rhs = 0;
+        int res = INT_MAX;
+        int res_lhs = -1;
+
+        while(rhs < s.size()){
+            if(vis.find(s[rhs]) != vis.end()){
+                mp[s[rhs]]++;
+            }
+            if(check(mp) && lhs <= rhs){  // 目前窗口满足条件
+            cout << lhs << " " << rhs << endl;
+                do{
+                    if(rhs - lhs + 1 < res){
+                        res = rhs - lhs + 1;
+                        res_lhs = lhs;
+                    }
+                    if(vis.find(s[lhs]) != vis.end()){
+                        mp[s[lhs]]--;
+                    }
+                    lhs++;
+                }while(check(mp) && lhs <= rhs); 
+            }
+            rhs++;
+        }
+        cout << res << " " << res_lhs << endl;
+        return res_lhs == -1 ? "" : s.substr(res_lhs, res);
+    }
 };
 
 int main(){
     Solution sol;
-    cout << sol.minWindow("cabwefgewcwaefgcf","cae") << endl;
+    cout << sol.minWindow("a","a") << endl;
     return 0;
 }
