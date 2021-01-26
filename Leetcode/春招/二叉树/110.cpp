@@ -43,3 +43,19 @@ public:
         return dfs(root) != -1;
     }
 };
+
+
+class Solution {   
+std::optional<int> dfs(TreeNode *root){
+    if(!root) return 0;
+    auto lhs = dfs(root->left);
+    auto rhs = dfs(root->right);
+    if(!lhs || !rhs || abs(*lhs - *rhs) > 1) return {};
+    return std::optional<int>(max(*lhs, *rhs) + 1);
+}
+public:
+    bool isBalanced(TreeNode* root) {
+        if(!root) return true;
+        return dfs(root).has_value();
+    }
+};
