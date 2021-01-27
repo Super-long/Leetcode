@@ -2,7 +2,7 @@
 using namespace std; 
 
 class Solution {
-public:
+public: 
     int removeDuplicates(vector<int>& nums) {
         int lhs = 0;
         int flag = 1;
