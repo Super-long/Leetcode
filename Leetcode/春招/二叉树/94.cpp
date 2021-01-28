@@ -10,7 +10,9 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {    // 非递归中序遍历二叉树需要多刷，容易突然推不出来；这题是我最讨厌的题之一
+// 非递归中序遍历二叉树需要多刷，容易突然推不出来；这题是我最讨厌的题之一
+// 和114最好一起刷
+class Solution {    
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         if(!root) return{};

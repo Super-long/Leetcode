@@ -11,7 +11,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
+/* class Solution {
 public:
     void flatten(TreeNode* root) {
         auto v = vector<TreeNode*>();
@@ -32,5 +32,37 @@ public:
             prev->left = nullptr;
             prev->right = curr;
         }
+    }
+};
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if(!root) return;
+        stack<TreeNode*> stk;
+        stk.push(root);
+        TreeNode* prev = nullptr;
+        while(stk.size()){
+            auto item = stk.top();
+            stk.pop();
+
+            auto left = item->left;
+            auto right = item->right;
+            if(right){
+                stk.push(right);
+            }
+
+            if(left){
+                stk.push(left);
+            }
+
+            if(prev != nullptr){
+                prev->right = item;
+                prev->left = nullptr;
+            }
+
+            prev = item;
+        }
+        return;
     }
 };
