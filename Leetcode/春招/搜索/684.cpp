@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {    // 并查集和拓扑排序都可以解
+class Solution {    // 并查集和拓扑排序都可以解；当然深搜也可以
 private:
     bool dfs(const vector<vector<int>>& graph, vector<bool>& vis, int node1, int node2){
         if(node1 == node2) return true;
@@ -69,10 +69,12 @@ public:
 */
 
 int main(){
-    auto fun = [](int x) -> bool{   // 闭包没办法递归
+    int temp = 0;
+    function<bool(int)> fun = [&](int x) -> bool{   // 闭包想要递归必须让闭包对象本身出现在捕获列表中
         if(x == 100) return true;
         fun(x + 1);
         return false;
     };
+    
     return 0;
 }
