@@ -80,5 +80,11 @@ int main(){
     Solution sol;
     vector<int> vec = {0,1,0,2,1,0,1,3,2,1,2,1};
     cout << sol.trap(vec) << endl;
+    size_t stacksize;
+    pthread_attr_t attr;
+    pthread_attr_getstacksize(&attr,&stacksize);
+    if (!stacksize) stacksize = 1; /* The world is full of Solaris Fixes */
+    while (stacksize < 1024*1024*4) stacksize *= 2;
+    cout << stacksize << endl;
     return 0;
 }
