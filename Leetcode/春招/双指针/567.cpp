@@ -5,7 +5,7 @@ class Solution {
 private:
     unordered_map<char, int> ori, cnt;
 public:
-    bool checkInclusion(string s1, string s2) {
+    bool checkInclusion(string s1, string s2) { 
         for(auto x : s1){
             ori[x]++;
         }
