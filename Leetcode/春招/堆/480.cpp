@@ -12,9 +12,11 @@ private:
         if(!lo.size() || sum <= lo.top()){
             smallsize++;
             lo.push(sum);
+            prune(lo);  // 顶部已经变更，需要更新
         } else {
             largesize++;
             hi.push(sum);
+            prune(hi);
         }
         makeBlance();
     }
