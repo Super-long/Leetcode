@@ -7,6 +7,7 @@ public:
         vector<pair<int, int>> res; // 存储每一个值的左右区间
         res.resize(heights.size());
         stack<int> stkl;
+        
         for (size_t i = 0; i < heights.size(); i++){
             while(!stkl.empty()){
                 if(heights[stkl.top()] >= heights[i]){

@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/* class Solution {    // 内存消耗太大
+/* class Solution {    // 内存消耗太大;排序+双指针也可以做
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
         vector<int> res;
