@@ -39,17 +39,20 @@ public:
         int lhs = 0;
         int rhs = citations.size() - 1;
         int len = citations.size();
+        int ans = citations.size();
         while(lhs <= rhs){
             int mid = lhs + (rhs - lhs) / 2;
-            if(len - mid == citations[mid]){
+            if(len - mid == citations[mid]){    // 一定是答案
                 return len - mid;
             } else if(len - mid > citations[mid]) {
                 lhs = mid + 1;  // 显然lhs可能是答案
+                ans = mid;
             } else {
                 rhs = mid - 1;
             }
         }
-        return len - lhs;
+        cout << ans << endl;
+        return citations[ans];   // 如果最后也不满足第一个if，那么lhs就是满足条件的值
     }
 };
 
