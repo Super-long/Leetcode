@@ -44,6 +44,34 @@ public:
     }
 };
 
+class Solution {    // 这样一次遍历就可以了，和上面的区别是这个只需要遍历一次
+public:
+    int maxTurbulenceSize(vector<int>& arr) {
+        int n = arr.size();
+        int ret = 1;
+        int left = 0, right = 0;
+
+        while (right < n - 1) {
+            if (left == right) {
+                if (arr[left] == arr[left + 1]) {
+                    left++;
+                }
+                right++;
+            } else {
+                if (arr[right - 1] < arr[right] && arr[right] > arr[right + 1]) {
+                    right++;
+                } else if (arr[right - 1] > arr[right] && arr[right] < arr[right + 1]) {
+                    right++;
+                } else {
+                    left = right;
+                }
+            }
+            ret = max(ret, right - left + 1);
+        }
+        return ret;
+    }
+};
+
 int main(){
     Solution sol;
     vector<int> vec = {4,8,12,16};
