@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution {    // 最长递增子序列，dp，二分都可以解
 public:
     int lengthOfLIS(vector<int>& nums) {
         int lhs = 0;

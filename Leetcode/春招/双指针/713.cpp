@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution {    // 二分也可以解，但是比较麻烦
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
         int lhs = 0;
