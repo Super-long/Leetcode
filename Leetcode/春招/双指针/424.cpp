@@ -7,8 +7,7 @@ public:
         int len = s.size();
         int lhs = 0;
         int rhs = 0;
-        unordered_map<char, int> vis;
-        char ch = 0;
+        unordered_map<char, int> vis;   // AABABBA -- 1 -- 4
         int num = 0;    // 所有字符中出现的最大次数
         int result = 0;
         while(rhs < len) {
@@ -16,16 +15,12 @@ public:
             vis[temp]++;
             if(vis[temp] > num){
                 num = vis[temp];
-                ch = temp;
             }
-            if(rhs - lhs + 1 - num <= k){
+            if(rhs - lhs + 1 - num <= k){   // 因为num最大的时候才需要更新，后面可能会减小，但是不需要更新；
                 result = rhs - lhs + 1; // 这里的答案只会递增，不需要max
             } else {
                 auto item = s[lhs];
                 vis[item]--;
-/*                 if(item == ch){
-                    num = vis[item];    // 这里不更新，当右边插入的时候如果插入的值可以更新则更新，不可能更新的话
-                }// 有问题，没办法保证这个值此时还是最大 */
                 lhs++;
             }
             rhs++;
