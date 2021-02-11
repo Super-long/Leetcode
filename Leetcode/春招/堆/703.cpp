@@ -18,7 +18,9 @@ public:
     
     int add(int val) {
         que.push(val);
-        que.pop();
+        while(que.size() > len){
+            que.pop();
+        }
         return que.top();
     }
 };
