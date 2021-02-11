@@ -28,7 +28,8 @@ private:
     }
 public:
     string getHappyString(int n, int k) {
-        if(k > pow(2, n - 1) * n) return "";    // 加上以后竟然变慢了，看来需要快速幂
+        // 3<<(n-1)
+        if(k > pow(2, n - 1) * 3) return "";    // 加上以后竟然变慢了，看来需要快速幂
         len = n;
         target = k;
         string res;
