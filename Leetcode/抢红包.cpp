@@ -52,6 +52,9 @@ class Redbag{
                 graph[conversion(item.x1, item.y1)].insert(make_pair(conversion(item.x2, item.y2), true));
                 graph[conversion(item.x2, item.y2)].insert(make_pair(conversion(item.x1, item.y1), true));
             }
+            for(auto x : graph){
+                cout << x.size() << endl;   // 图建错了，不止两个奇数结点;这个图建的不满足欧拉图定义，
+            }
             
             for (int i = 0; i < col*col; i++){
                 if(flag) break;
