@@ -20,7 +20,7 @@ public:
     }
 }; */
 
-class Solution {
+class Solution {    // 这题和154一模一样
 public: // https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-by-leetcode-s/
     int minArray(vector<int>& numbers) {    // 这题其实挺麻烦的，需要分析清楚三种情况，不然搞不出来的。题解还是比较清楚的。
         int lhs = 0;
