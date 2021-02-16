@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution {    // 特殊的双指针，题解用了一种更骚的方法
 public:
     int numSubarrayBoundedMax(vector<int>& A, int L, int R) {
         int lhs = 0;
