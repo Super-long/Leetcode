@@ -77,6 +77,7 @@ private:
 public:
     bool isPalindrome(ListNode* head) {
         if(!head) return true;
+        
         ListNode lhs(0), rhs(0);
         ListNode* slow = &lhs;
         ListNode* fast = &rhs;
