@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class LRUCache {
+class LRUCache { 
 private:
     struct ListNode{
         int val;
