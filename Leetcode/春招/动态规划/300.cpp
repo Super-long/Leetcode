@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution {    // 最长上升子序列，354是用二分的优化版本
 public:
     int lengthOfLIS(vector<int>& nums) {
         vector<int> dp(nums.size(), 1);
