@@ -7,14 +7,14 @@ class Solution {        // 经典题目；求一个数字的两个区间；
 private:
     // true的时候求左边
     int binarySearch(vector<int>& nums, int target, bool flag) {
-        int left = 0, right = nums.size() - 1;
+        int left = 0, right = nums.size() - 1; 
         int ans = static_cast<int>(nums.size());
 
         while(left <= right) {
             int mid = left + (right - left) / 2;
             if(nums[mid] > target || (flag && nums[mid] >= target)){
                 right = mid - 1;    // 为了跳出while循环
-                ans = mid;
+                ans = mid; 
             } else {
                 left = mid + 1;
             }

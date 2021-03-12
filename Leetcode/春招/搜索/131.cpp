@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+/* class Solution {
 private:
     vector<vector<string>> res;
     vector<string> bucket;
@@ -39,6 +39,42 @@ public:
         dfs(s, 0);
         return res;
     }
+}; */
+
+class Solution {
+private:
+    vector<vector<string>> res;
+    vector<string> bucket;
+    bool check(string& s, int lhs, int rhs){
+        while(lhs <= rhs){
+            if(s[lhs] != s[rhs]) return false;
+            lhs++;
+            rhs--;
+        }
+        return true;
+    }
+
+    void dfs(string& str, int index){
+        if(index > str.size()) return;
+        if(index == str.size()){
+            res.push_back(bucket);
+            return;
+        }
+
+        for (size_t i = index; i < str.size(); i++){
+            if(check(str, index, i)){
+                bucket.emplace_back(str.substr(index, i - index + 1));
+                dfs(str, i + 1);
+                bucket.pop_back();
+            }
+        }
+    }
+
+public:
+    vector<vector<string>> partition(string s) {
+        dfs(s, 0);
+        return res;
+    }
 };
 
 int main(){
@@ -52,3 +88,4 @@ int main(){
     }
     return 0;
 }
+
