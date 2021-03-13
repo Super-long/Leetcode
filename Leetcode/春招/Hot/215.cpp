@@ -20,7 +20,7 @@ private:
     }
 
     // 光芒四射的函数
-    int Partition(vector<int>& nums, int lhs, int rhs){
+    int Partition(vector<int>& nums, int lhs, int rhs){ 
         int x = nums[rhs];
         int index = lhs - 1;
         for (int i = lhs; i < rhs; i++){
